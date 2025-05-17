@@ -19,13 +19,13 @@ namespace CRUD_APP.Pages.Users
             _context = context;
         }
 
-        public IList<User> User { get;set; } = default!;
+        public new IList<User> User { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.User != null)
+            if (_context.Users != null)
             {
-                User = await _context.User.ToListAsync();
+                User = await _context.Users.ToListAsync();
             }
         }
     }

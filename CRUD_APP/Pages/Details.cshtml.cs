@@ -19,16 +19,16 @@ namespace CRUD_APP.Pages
             _context = context;
         }
 
-      public User User { get; set; } = default!; 
+      public new User User { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.ID == id);
             if (user == null)
             {
                 return NotFound();

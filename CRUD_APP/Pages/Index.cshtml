@@ -1,42 +1,45 @@
 ﻿@page
 @model CRUD_APP.Pages.IndexModel
 
-<link rel="stylesheet" href="~/css/site.css" />
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
 
 <p>
-    <a asp-page="Create" class="button button-success">Create New</a>
+    <a asp-page="./Create" class="button button-success">Create New</a>
 </p>
 
-<div class="table-container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].Email)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.User)
-            {
+@if (Model.User == null || !Model.User.Any())
+{
+    <p>No users found.</p>
+}
+else
+{
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.User)
+                {
                     <tr>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
                         <td class="action-links">
                             <a asp-page="./Edit" asp-route-id="@item.ID" class="button">Edit</a>
                             <a asp-page="./Details" asp-route-id="@item.ID" class="button button-secondary">Details</a>
                             <a asp-page="./Delete" asp-route-id="@item.ID" class="button button-danger">Delete</a>
                         </td>
                     </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                }
+            </tbody>
+        </table>
+    </div>
+}
