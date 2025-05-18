@@ -17,8 +17,9 @@ html {
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f4; /* Fallback if image fails */
     background-image: url('/images/w.jpg');
-    background-size: cover;
+    background-size: contain; /* Prevent stretching */
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -36,6 +37,7 @@ body {
     background-color: #fff;
     border-bottom: 1px solid #dee2e6;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0; /* Override mb-3 */
 }
 
 .navbar-brand, .nav-link {
@@ -54,12 +56,13 @@ body {
 /* Container */
 .container {
     max-width: 960px;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 1.5rem;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex: 1;
+    min-height: calc(100vh - 100px); /* Adjust for navbar (~50px) and footer (~50px) */
 }
 
 /* Headings */
@@ -76,8 +79,11 @@ h1 {
     background-color: #fff;
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
+    max-height: 60vh; /* Limit table height */
+    overflow-y: auto; /* Vertical scrolling */
+    overflow-x: auto; /* Horizontal scrolling */
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .table {
@@ -96,6 +102,9 @@ h1 {
         background-color: #f8f9fa;
         font-weight: 600;
         color: #495057;
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
 
     .table tbody tr:hover {
@@ -122,6 +131,7 @@ h1 {
 
     .button:hover {
         transform: translateY(-1px);
+        background-color: #0056b3;
     }
 
 .button-success {
@@ -183,7 +193,6 @@ footer.footer {
     padding: 0.75rem 0;
     font-size: 0.85rem;
     width: 100%;
-    margin-top: auto;
 }
 
     footer.footer a {
@@ -195,10 +204,16 @@ footer.footer {
             text-decoration: underline;
         }
 
+/* Remove content-wrap styling */
+.content-wrap {
+    display: contents; /* Neutralize unnecessary wrapper */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+        margin: 0.5rem;
     }
 
     .table th, .table td {
@@ -227,5 +242,9 @@ footer.footer {
     .btn-primary {
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
+    }
+
+    .table-container {
+        max-height: 50vh;
     }
 }
