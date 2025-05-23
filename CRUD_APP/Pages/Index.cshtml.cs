@@ -16,11 +16,11 @@ namespace CRUD_APP.Pages
             _context = context;
         }
 
-        public new IList<User> User { get; set; } = default!;
+        public IList<User> Users { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            User = await _context.Users.ToListAsync();
+            Users = await _context.Users.ToListAsync();
         }
     }
 }

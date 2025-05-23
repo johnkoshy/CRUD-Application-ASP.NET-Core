@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using CRUD_APP.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,11 +20,5 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.MapRazorPages();
-
-app.MapGet("/", context =>
-{
-    context.Response.Redirect("/Index");
-    return Task.CompletedTask;
-});
 
 app.Run();
