@@ -1,45 +1,34 @@
 ﻿@page
-@model CRUD_APP.Pages.IndexModel
-
+@model IndexModel
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "Home";
 }
-
-<h1>Users</h1>
-
-<p>
-    <a asp-page="./Create" class="button button-success">Create New</a>
-</p>
-
-@if (Model.User == null || !Model.User.Any())
-{
-    <p>No users found.</p>
-}
-else
-{
-    <div class="table-container">
-        <table class="table">
-            <thead>
+<div class="text-center">
+    <h1>User Management</h1>
+    <p>Welcome to the User Management application.</p>
+    <a asp-page="/Create" class="btn btn-primary">Add New User</a>
+</div>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td class="action-links">
+                        <a asp-page="/Edit" asp-route-id="@user.Id" class="button button-secondary">Edit</a>
+                        <a asp-page="/Delete" asp-route-id="@user.Id" class="button button-danger">Delete</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.User)
-                {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Email</td>
-                        <td class="action-links">
-                            <a asp-page="./Edit" asp-route-id="@item.ID" class="button">Edit</a>
-                            <a asp-page="./Details" asp-route-id="@item.ID" class="button button-secondary">Details</a>
-                            <a asp-page="./Delete" asp-route-id="@item.ID" class="button button-danger">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-}
+            }
+        </tbody>
+    </table>
+</div>
