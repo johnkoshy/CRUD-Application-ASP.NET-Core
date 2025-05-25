@@ -2,7 +2,7 @@
        <PropertyGroup>
          <TargetFramework>net6.0</TargetFramework>
          <Nullable>enable</Nullable>
-         <ImplicitUsings>enable</ImplicitUsings>
+         <ImplicitUsings>disable</ImplicitUsings>
        </PropertyGroup>
        <ItemGroup>
          <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.35" />
