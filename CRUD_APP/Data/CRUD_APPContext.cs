@@ -10,6 +10,6 @@ namespace CRUD_APP.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User>? Users { get; set; }
     }
 }

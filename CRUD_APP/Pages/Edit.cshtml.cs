@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CRUD_APP.Data;
 using CRUD_APP.Model;
@@ -13,9 +10,9 @@ namespace CRUD_APP.Pages
 {
     public class EditModel : PageModel
     {
-        private readonly CRUD_APP.Data.CRUD_APPContext _context;
+        private readonly CRUD_APPContext _context;
 
-        public EditModel(CRUD_APP.Data.CRUD_APPContext context)
+        public EditModel(CRUD_APPContext context)
         {
             _context = context;
         }
@@ -30,7 +27,7 @@ namespace CRUD_APP.Pages
                 return NotFound();
             }
 
-            var user =  await _context.Users.FirstOrDefaultAsync(m => m.ID == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -39,8 +36,6 @@ namespace CRUD_APP.Pages
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -56,7 +51,7 @@ namespace CRUD_APP.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(User.ID))
+                if (!UserExists(User.Id))
                 {
                     return NotFound();
                 }
@@ -71,7 +66,7 @@ namespace CRUD_APP.Pages
 
         private bool UserExists(int id)
         {
-          return (_context.Users?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

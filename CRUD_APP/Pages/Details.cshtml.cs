@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +9,14 @@ namespace CRUD_APP.Pages
 {
     public class DetailsModel : PageModel
     {
-        private readonly CRUD_APP.Data.CRUD_APPContext _context;
+        private readonly CRUD_APPContext _context;
 
-        public DetailsModel(CRUD_APP.Data.CRUD_APPContext context)
+        public DetailsModel(CRUD_APPContext context)
         {
             _context = context;
         }
 
-      public new User User { get; set; } = default!; 
+        public User User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,15 +25,13 @@ namespace CRUD_APP.Pages
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.ID == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                User = user;
-            }
+
+            User = user;
             return Page();
         }
     }

@@ -1,6 +1,9 @@
 ﻿@page
 @model CRUD_APP.Pages.CreateModel
-
+@{
+    ViewData["Title"] = "Create User";
+}
+<h1>Create User</h1>
 <h4>User</h4>
 <hr />
 <div class="row">
@@ -23,11 +26,9 @@
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
